@@ -1,15 +1,21 @@
 # Radiohead Data Lab
 
-A data science project testing whether the common narratives about Radiohead's evolution hold up to quantitative analysis.
+A data science and web project exploring Radiohead's lyrical evolution through NLP, statistical analysis, and interactive visualization. Built as a tribute to the band's 2025 reunion tour, their first performances in seven years.
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/en/a/a1/Radiohead.bends.albumart.jpg" width="130" alt="The Bends"/>
-  <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Radioheadokcomputer.png" width="130" alt="OK Computer"/>
-  <img src="https://upload.wikimedia.org/wikipedia/en/a/a1/Radiohead_-_Kid_A_cover_art.png" width="130" alt="Kid A"/>
-  <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Radiohead_-_Amnesiac_cover.png" width="130" alt="Amnesiac"/>
-  <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Radiohead_-_Hail_to_the_Thief_-_album_art.jpg" width="130" alt="Hail to the Thief"/>
-  <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/In_Rainbows_Official_Cover.jpg" width="130" alt="In Rainbows"/>
+  <img src="assets/the-bends.jpg" width="130" alt="The Bends"/>
+  <img src="assets/ok-computer.jpg" width="130" alt="OK Computer"/>
+  <img src="assets/kid-a.jpg" width="130" alt="Kid A"/>
+  <img src="assets/amnesiac.jpg" width="130" alt="Amnesiac"/>
+  <img src="assets/hail-to-the-thief.jpg" width="130" alt="Hail to the Thief"/>
+  <img src="assets/in-rainbows.jpg" width="130" alt="In Rainbows"/>
 </p>
+
+## Context: The 2025 Reunion
+
+After seven years of silence, Radiohead returned to the stage in November 2025 for a 20-date European tour. They played in the round for the first time since 1993, drawing from a 65-song pool that Thom Yorke compiled for rotating setlists. The tour came after years of grief, mental health struggles, and uncertainty about whether the band would ever perform together again.
+
+This project explores the patterns in their music that brought fans back.
 
 ## The Central Question
 
@@ -22,7 +28,7 @@ This project attempts to quantify what "cold" and "detached" actually mean, then
 ## The Discography
 
 | Era | Album | Year | Narrative |
-|-----|-------|------|-------------------|
+|-----|-------|------|-----------|
 | Early | Pablo Honey | 1993 | Raw, unformed, Creep-dependent |
 | Early | The Bends | 1995 | Anthemic, emotional, guitar-driven |
 | Peak | OK Computer | 1997 | Paranoid, sprawling, the "last rock album" |
@@ -47,62 +53,113 @@ Topic modeling across albums will test whether Radiohead's core concerns (techno
 **H4: In Rainbows is the outlier, not Kid A.**
 Conventional wisdom treats Kid A as the pivot point. But In Rainbows may represent a larger emotional shift, a return to directness that breaks from the Kid A through Hail to the Thief period. The data will show which album is the true statistical outlier.
 
-## Methodology
+## Key Analyses
 
-### Data Collection
-- Lyrics scraped and cleaned for all studio albums (Pablo Honey through A Moon Shaped Pool)
-- Audio features via Spotify API (tempo, energy, valence, acousticness)
-- Metadata: release dates, track positions, album context
+### The Wait
+Chart every song by how long it took from first live performance to studio release. True Love Waits existed for 21 years as a live-only track before appearing on A Moon Shaped Pool in 2016, the same year Rachel Owen passed away. Twenty-one years of waiting to release a song called "True Love Waits," and when they finally did, it was a goodbye.
 
-### Lyrical Analysis
-- Sentiment scoring (VADER, TextBlob, and transformer-based models for comparison)
-- Emotion classification beyond positive/negative (anger, fear, sadness, joy, disgust, surprise)
-- Lexical diversity metrics (TTR, MTLD, vocd-D)
-- Sentence structure analysis (completeness, fragmentation indices)
+### Glass Eyes and the A Moon Shaped Pool Cluster
+Sentiment and emotional valence analysis showing how that album sits apart from everything else in the discography.
 
-### Statistical Testing
-- Album-to-album comparisons with appropriate corrections for multiple testing
-- Era-based hypothesis tests (pre-Kid A vs post-Kid A vs post-In Rainbows)
-- Effect size calculations to distinguish statistical significance from meaningful difference
+### The Coldness Test
+H1 visualized. Show whether Kid A's lyrics are actually colder or if critics projected the electronic production onto the words.
 
-### Visualization
-- Album trajectories across sentiment and complexity dimensions
-- Clustering visualizations to identify natural groupings
-- Timeline plots showing evolution of specific metrics
+### Vocabulary Fragmentation Over Time
+Lexical diversity plots tracking how Thom's writing became more abstract across eras.
+
+### Setlist Archaeology
+2025 tour setlist analysis showing which eras the band drew from for their return.
 
 ## Project Structure
 
 ```
 radiohead-lab/
+├── assets/                          # Album artwork for README
 ├── data/
-│   ├── raw/              # Original scraped lyrics
-│   ├── processed/        # Cleaned and tokenized text
-│   └── features/         # Extracted metrics per song
+│   ├── raw/                         # Original scraped data
+│   ├── processed/                   # Cleaned datasets
+│   └── exports/
+│       └── radiohead_complete.json  # Final dataset for web
+├── src/
+│   ├── scrapers/
+│   │   ├── lyrics_scraper.py        # Genius API
+│   │   ├── audio_features.py        # Spotify API
+│   │   └── setlist_scraper.py       # setlist.fm for 2025 tour
+│   ├── processing/
+│   │   ├── clean_lyrics.py
+│   │   ├── tokenization.py
+│   │   └── feature_extraction.py
+│   ├── analysis/
+│   │   ├── sentiment.py
+│   │   ├── lexical_diversity.py
+│   │   ├── topic_modeling.py
+│   │   └── hypothesis_tests.py
+│   └── visualization/
+│       ├── album_trajectories.py
+│       ├── clustering_plots.py
+│       └── timeline_charts.py
 ├── notebooks/
 │   ├── 01_data_collection.ipynb
 │   ├── 02_exploratory_analysis.ipynb
-│   ├── 03_sentiment_analysis.ipynb
-│   ├── 04_lexical_complexity.ipynb
-│   ├── 05_topic_modeling.ipynb
-│   └── 06_hypothesis_testing.ipynb
-├── src/
-│   ├── scraping.py
-│   ├── preprocessing.py
-│   ├── features.py
-│   └── visualization.py
+│   ├── 03_sentiment_deep_dive.ipynb
+│   ├── 04_true_love_waits_case_study.ipynb
+│   ├── 05_lexical_evolution.ipynb
+│   ├── 06_topic_modeling.ipynb
+│   ├── 07_hypothesis_testing.ipynb
+│   └── 08_export_for_web.ipynb
+├── web/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── AlbumExplorer.jsx
+│   │   │   ├── SentimentTimeline.jsx
+│   │   │   ├── LyricAnalyzer.jsx
+│   │   │   ├── TrueLoveWaits.jsx
+│   │   │   └── ReunionTour2025.jsx
+│   │   ├── data/
+│   │   │   └── radiohead_complete.json
+│   │   ├── styles/
+│   │   │   └── donwood.css
+│   │   └── App.jsx
+│   ├── public/
+│   └── package.json
 ├── results/
 │   └── figures/
+├── requirements.txt
 └── README.md
 ```
 
+## Visual Language
+
+The web experience shifts palettes based on Stanley Donwood's artwork for each album era:
+
+| Album | Palette | Texture |
+|-------|---------|---------|
+| The Bends | Clinical whites, medical imagery | Sterile, unsettling |
+| OK Computer | Washed blues, highway grays | Smeared, ghostly |
+| Kid A | Reds, mountain whites | Jagged, digital decay |
+| Amnesiac | Sepia, minotaur blacks | Labyrinthine |
+| Hail to the Thief | Map colors, dense text | Cartographic chaos |
+| In Rainbows | Spectrum explosion | Layered, warm |
+| The King of Limbs | Forest greens, newspaper | Organic, fragmented |
+| A Moon Shaped Pool | Muted, ash, water | Grief, dissolution |
+
 ## Stack
 
+**Data Pipeline**
 - Python 3.11+
 - pandas, NumPy, SciPy
-- matplotlib, seaborn, plotly
 - spaCy, NLTK, Hugging Face transformers
 - scikit-learn
-- Jupyter
+- Genius API, Spotify API, setlist.fm API
+
+**Analysis**
+- Jupyter notebooks
+- matplotlib, seaborn, plotly
+
+**Web**
+- React
+- Tailwind CSS
+- Vercel/Netlify deployment
 
 ## Status
 
@@ -110,4 +167,4 @@ In progress. Data collection complete, exploratory analysis underway.
 
 ## Disclaimer
 
-For educational and analytical purposes only. Album artwork shown under fair use for commentary. All music, lyrics, and artwork remain the property of Radiohead and their respective rights holders.
+For educational and analytical purposes only. Built as a tribute to Radiohead's 2025 reunion. Album artwork shown under fair use for commentary. All music, lyrics, and artwork remain the property of Radiohead and their respective rights holders.

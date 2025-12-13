@@ -172,6 +172,37 @@ The web experience shifts palettes based on Stanley Donwood's artwork for each a
 
 In progress. Data collection complete, exploratory analysis underway.
 
+## What’s been done (portfolio snapshot)
+
+- Wired a minimal ingestion pipeline: ingest `data/raw/new_data_1.csv` (Kaggle lyrics set), clean album/track names, add lexical stats and VADER sentiment placeholders, export to `data/exports/radiohead_complete.json` (mirrored to `web/src/data/`).
+- Added analysis notebooks that now load reliably regardless of working directory:
+  - `02_exploratory_analysis.ipynb`: quick EDA on words/sentiment.
+  - `03_sentiment_deep_dive.ipynb`: album averages + distribution.
+  - `05_lexical_evolution.ipynb`: type-token ratio and sentence length over time.
+  - `06_topic_modeling.ipynb`: rough LDA sketch.
+  - `07_hypothesis_testing.ipynb`: quick H1/H4 tests (Kid A coldness, In Rainbows outlier).
+  - `04_true_love_waits_case_study.ipynb`: placeholder wait-time calc until setlists arrive.
+- Built a thin React/Vite slice (`web/`) with album-era palette bars and a sentiment timeline pulling from the exported JSON.
+- Scaffolding in place for scrapers (Genius lyrics, Spotify audio features, setlist.fm).
+- Local `.env` and `.gitignore` added to keep secrets out of git.
+
+Data source (current):
+- `data/raw/new_data_1.csv` (Kaggle lyrics dataset, 100 tracks across 9 albums). No other sources are merged yet.
+
+Where we’re stuck:
+- Spotify `audio-features` endpoint returns 403 with client-credential tokens. Need a short-lived user access token (`SPOTIFY_ACCESS_TOKEN`) to enrich tracks; until then, `radiohead_with_audio.json` has empty features.
+- No setlist.fm or live True Love Waits timing data pulled yet.
+
+What’s next:
+1) Add a user access token to `.env` (`SPOTIFY_ACCESS_TOKEN=...`) and rerun `src/processing/ingest_csv.py` plus the audio enrichment to fill `data/exports/radiohead_with_audio.json`.
+2) Add setlist.fm API key to `.env`, scrape 2025 tour setlists, and compute the True Love Waits wait-time properly.
+3) Swap naive sentiment for a better model and expand emotion/coherence metrics; update notebooks and export.
+4) Flesh out web components (AlbumExplorer, LyricAnalyzer, ReunionTour2025, TrueLoveWaits) with Donwood-era theming and add more plots to `results/`.
+5) Optional: Tailwind + deployment (Vercel/Netlify) once visuals firm up.
+
+Safety/commits:
+- Secrets live only in `.env` (ignored by git). Do not commit `.env`. The repo is safe to commit as-is.***
+
 ## Disclaimer
 
 For educational and analytical purposes only. Built as a tribute to Radiohead's 2025 reunion. Album artwork shown under fair use for commentary. All music, lyrics, and artwork remain the property of Radiohead and their respective rights holders.

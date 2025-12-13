@@ -21,7 +21,7 @@ This project attempts to quantify what "cold" and "detached" actually mean, then
 
 ## The Discography
 
-| Era | Album | Year | Critical Narrative |
+| Era | Album | Year | Narrative |
 |-----|-------|------|-------------------|
 | Early | Pablo Honey | 1993 | Raw, unformed, Creep-dependent |
 | Early | The Bends | 1995 | Anthemic, emotional, guitar-driven |

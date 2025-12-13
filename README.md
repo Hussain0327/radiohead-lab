@@ -2,6 +2,15 @@
 
 A data science project testing whether the common narratives about Radiohead's evolution hold up to quantitative analysis.
 
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/en/a/a1/Radiohead.bends.albumart.jpg" width="130" alt="The Bends"/>
+  <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Radioheadokcomputer.png" width="130" alt="OK Computer"/>
+  <img src="https://upload.wikimedia.org/wikipedia/en/a/a1/Radiohead_-_Kid_A_cover_art.png" width="130" alt="Kid A"/>
+  <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Radiohead_-_Amnesiac_cover.png" width="130" alt="Amnesiac"/>
+  <img src="https://upload.wikimedia.org/wikipedia/en/5/5a/Radiohead_-_Hail_to_the_Thief_-_album_art.jpg" width="130" alt="Hail to the Thief"/>
+  <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/In_Rainbows_Official_Cover.jpg" width="130" alt="In Rainbows"/>
+</p>
+
 ## The Central Question
 
 Critics and fans often describe Radiohead's trajectory in familiar terms: the band became "colder," "more abstract," and "emotionally detached" after OK Computer. Kid A is treated as a clean break, a band abandoning warmth for alienation.
@@ -9,6 +18,20 @@ Critics and fans often describe Radiohead's trajectory in familiar terms: the ba
 But is any of that actually true in the lyrics, or are we conflating sonic texture with thematic content? Did the words change, or just the sounds around them?
 
 This project attempts to quantify what "cold" and "detached" actually mean, then test whether the data supports the narrative.
+
+## The Discography
+
+| Era | Album | Year | Critical Narrative |
+|-----|-------|------|-------------------|
+| Early | Pablo Honey | 1993 | Raw, unformed, Creep-dependent |
+| Early | The Bends | 1995 | Anthemic, emotional, guitar-driven |
+| Peak | OK Computer | 1997 | Paranoid, sprawling, the "last rock album" |
+| Reinvention | Kid A | 2000 | Cold, fractured, electronic alienation |
+| Reinvention | Amnesiac | 2001 | Kid A's darker twin, jazz-inflected |
+| Middle | Hail to the Thief | 2003 | Political, dense, return to guitars |
+| Late | In Rainbows | 2007 | Warm, direct, romantic |
+| Late | The King of Limbs | 2011 | Rhythmic, skeletal, loop-based |
+| Late | A Moon Shaped Pool | 2016 | Orchestral, mournful, retrospective |
 
 ## Hypotheses
 
@@ -87,4 +110,4 @@ In progress. Data collection complete, exploratory analysis underway.
 
 ## Disclaimer
 
-For educational and exploratory purposes only. All music and lyrics remain the property of Radiohead and their respective rights holders.
+For educational and analytical purposes only. Album artwork shown under fair use for commentary. All music, lyrics, and artwork remain the property of Radiohead and their respective rights holders.

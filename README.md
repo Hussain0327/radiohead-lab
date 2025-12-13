@@ -6,9 +6,8 @@ A data science and web project exploring Radiohead's lyrical evolution through N
   <img src="assets/the-bends.jpg" width="130" alt="The Bends"/>
   <img src="assets/ok-computer.jpg" width="130" alt="OK Computer"/>
   <img src="assets/kid-a.jpg" width="130" alt="Kid A"/>
-  <img src="assets/amnesiac.jpg" width="130" alt="Amnesiac"/>
-  <img src="assets/hail-to-the-thief.jpg" width="130" alt="Hail to the Thief"/>
-  <img src="assets/in-rainbows.jpg" width="130" alt="In Rainbows"/>
+  <img src="assets/Inrainbows.jpg" width="130" alt="In Rainbows"/>
+  <img src="assets/moon-shaped-pool.jpg" width="130" alt="A Moon Shaped Pool"/>
 </p>
 
 ## Context: The 2025 Reunion
@@ -27,17 +26,17 @@ This project attempts to quantify what "cold" and "detached" actually mean, then
 
 ## The Discography
 
-| Era | Album | Year | Narrative |
-|-----|-------|------|-----------|
-| Early | Pablo Honey | 1993 | Raw, unformed, Creep-dependent |
-| Early | The Bends | 1995 | Anthemic, emotional, guitar-driven |
-| Peak | OK Computer | 1997 | Paranoid, sprawling, the "last rock album" |
-| Reinvention | Kid A | 2000 | Cold, fractured, electronic alienation |
-| Reinvention | Amnesiac | 2001 | Kid A's darker twin, jazz-inflected |
-| Middle | Hail to the Thief | 2003 | Political, dense, return to guitars |
-| Late | In Rainbows | 2007 | Warm, direct, romantic |
-| Late | The King of Limbs | 2011 | Rhythmic, skeletal, loop-based |
-| Late | A Moon Shaped Pool | 2016 | Orchestral, mournful, retrospective |
+| Era         | Album              | Year | Narrative                                  |
+| ----------- | ------------------ | ---- | ------------------------------------------ |
+| Early       | Pablo Honey        | 1993 | Raw, unformed, Creep-dependent             |
+| Early       | The Bends          | 1995 | Anthemic, emotional, guitar-driven         |
+| Peak        | OK Computer        | 1997 | Paranoid, sprawling, the "last rock album" |
+| Reinvention | Kid A              | 2000 | Cold, fractured, electronic alienation     |
+| Reinvention | Amnesiac           | 2001 | Kid A's darker twin, jazz-inflected        |
+| Middle      | Hail to the Thief  | 2003 | Political, dense, return to guitars        |
+| Late        | In Rainbows        | 2007 | Warm, direct, romantic                     |
+| Late        | The King of Limbs  | 2011 | Rhythmic, skeletal, loop-based             |
+| Late        | A Moon Shaped Pool | 2016 | Orchestral, mournful, retrospective        |
 
 ## Hypotheses
 
@@ -56,18 +55,23 @@ Conventional wisdom treats Kid A as the pivot point. But In Rainbows may represe
 ## Key Analyses
 
 ### The Wait
+
 Chart every song by how long it took from first live performance to studio release. True Love Waits existed for 21 years as a live-only track before appearing on A Moon Shaped Pool in 2016, the same year Rachel Owen passed away. Twenty-one years of waiting to release a song called "True Love Waits," and when they finally did, it was a goodbye.
 
 ### Glass Eyes and the A Moon Shaped Pool Cluster
+
 Sentiment and emotional valence analysis showing how that album sits apart from everything else in the discography.
 
 ### The Coldness Test
+
 H1 visualized. Show whether Kid A's lyrics are actually colder or if critics projected the electronic production onto the words.
 
 ### Vocabulary Fragmentation Over Time
+
 Lexical diversity plots tracking how Thom's writing became more abstract across eras.
 
 ### Setlist Archaeology
+
 2025 tour setlist analysis showing which eras the band drew from for their return.
 
 ## Project Structure
@@ -132,20 +136,21 @@ radiohead-lab/
 
 The web experience shifts palettes based on Stanley Donwood's artwork for each album era:
 
-| Album | Palette | Texture |
-|-------|---------|---------|
-| The Bends | Clinical whites, medical imagery | Sterile, unsettling |
-| OK Computer | Washed blues, highway grays | Smeared, ghostly |
-| Kid A | Reds, mountain whites | Jagged, digital decay |
-| Amnesiac | Sepia, minotaur blacks | Labyrinthine |
-| Hail to the Thief | Map colors, dense text | Cartographic chaos |
-| In Rainbows | Spectrum explosion | Layered, warm |
-| The King of Limbs | Forest greens, newspaper | Organic, fragmented |
-| A Moon Shaped Pool | Muted, ash, water | Grief, dissolution |
+| Album              | Palette                          | Texture               |
+| ------------------ | -------------------------------- | --------------------- |
+| The Bends          | Clinical whites, medical imagery | Sterile, unsettling   |
+| OK Computer        | Washed blues, highway grays      | Smeared, ghostly      |
+| Kid A              | Reds, mountain whites            | Jagged, digital decay |
+| Amnesiac           | Sepia, minotaur blacks           | Labyrinthine          |
+| Hail to the Thief  | Map colors, dense text           | Cartographic chaos    |
+| In Rainbows        | Spectrum explosion               | Layered, warm         |
+| The King of Limbs  | Forest greens, newspaper         | Organic, fragmented   |
+| A Moon Shaped Pool | Muted, ash, water                | Grief, dissolution    |
 
 ## Stack
 
 **Data Pipeline**
+
 - Python 3.11+
 - pandas, NumPy, SciPy
 - spaCy, NLTK, Hugging Face transformers
@@ -153,10 +158,12 @@ The web experience shifts palettes based on Stanley Donwood's artwork for each a
 - Genius API, Spotify API, setlist.fm API
 
 **Analysis**
+
 - Jupyter notebooks
 - matplotlib, seaborn, plotly
 
 **Web**
+
 - React
 - Tailwind CSS
 - Vercel/Netlify deployment

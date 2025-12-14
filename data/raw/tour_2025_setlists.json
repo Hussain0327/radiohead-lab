@@ -1,0 +1,386 @@
+{
+  "_comment": "Radiohead 2025 European Reunion Tour setlists. First performances in 7 years. Data from setlist.fm and fan reports.",
+  "tour_info": {
+    "name": "2025 European Reunion Tour",
+    "dates": "November 2025",
+    "total_shows": 20,
+    "format": "In the round (first time since 1993)",
+    "song_pool": 65,
+    "rotating_setlist": true,
+    "notes": "First Radiohead performances since July 2018. Tour came after years of grief, mental health struggles, and uncertainty about whether the band would ever perform again."
+  },
+  "setlists": [
+    {
+      "date": "2025-11-01",
+      "venue": "Ziggo Dome",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "songs": [
+        "Everything in Its Right Place",
+        "15 Step",
+        "Bodysnatchers",
+        "My Iron Lung",
+        "Talk Show Host",
+        "Pyramid Song",
+        "How to Disappear Completely",
+        "Weird Fishes/Arpeggi",
+        "Ful Stop",
+        "Idioteque",
+        "Identikit",
+        "There There",
+        "Lotus Flower",
+        "You and Whose Army?",
+        "Lucky",
+        "Exit Music (For a Film)",
+        "Reckoner",
+        "Nude",
+        "Burn the Witch",
+        "2 + 2 = 5",
+        "Fake Plastic Trees",
+        "Karma Police"
+      ],
+      "encore": [
+        "Daydreaming",
+        "True Love Waits",
+        "Present Tense",
+        "Paranoid Android"
+      ]
+    },
+    {
+      "date": "2025-11-03",
+      "venue": "Ziggo Dome",
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "songs": [
+        "Bloom",
+        "Morning Mr Magpie",
+        "Airbag",
+        "All I Need",
+        "Jigsaw Falling into Place",
+        "Pyramid Song",
+        "Separator",
+        "Kid A",
+        "National Anthem",
+        "How to Disappear Completely",
+        "In Limbo",
+        "Morning Bell",
+        "Optimistic",
+        "No Surprises",
+        "Dollars and Cents",
+        "Knives Out",
+        "I Might Be Wrong",
+        "Everything in Its Right Place",
+        "Idioteque"
+      ],
+      "encore": [
+        "Street Spirit (Fade Out)",
+        "True Love Waits",
+        "Paranoid Android"
+      ]
+    },
+    {
+      "date": "2025-11-05",
+      "venue": "Mercedes-Benz Arena",
+      "city": "Berlin",
+      "country": "Germany",
+      "songs": [
+        "Burn the Witch",
+        "Daydreaming",
+        "Ful Stop",
+        "15 Step",
+        "Myxomatosis",
+        "All I Need",
+        "Pyramid Song",
+        "Videotape",
+        "Climbing Up the Walls",
+        "Bodysnatchers",
+        "Nude",
+        "Weird Fishes/Arpeggi",
+        "Give Up the Ghost",
+        "Lotus Flower",
+        "There There",
+        "2 + 2 = 5",
+        "Reckoner",
+        "Lucky"
+      ],
+      "encore": [
+        "True Love Waits",
+        "The Tourist",
+        "Motion Picture Soundtrack",
+        "Karma Police"
+      ]
+    },
+    {
+      "date": "2025-11-07",
+      "venue": "Mercedes-Benz Arena",
+      "city": "Berlin",
+      "country": "Germany",
+      "songs": [
+        "Let Down",
+        "Lucky",
+        "Airbag",
+        "Subterranean Homesick Alien",
+        "Exit Music (For a Film)",
+        "No Surprises",
+        "Karma Police",
+        "Electioneering",
+        "Climbing Up the Walls",
+        "The Tourist",
+        "Fake Plastic Trees",
+        "The Bends",
+        "Street Spirit (Fade Out)",
+        "Paranoid Android",
+        "Creep"
+      ],
+      "encore": [
+        "Everything in Its Right Place",
+        "True Love Waits",
+        "Idioteque"
+      ],
+      "notes": "OK Computer and The Bends heavy night"
+    },
+    {
+      "date": "2025-11-09",
+      "venue": "AccorHotels Arena",
+      "city": "Paris",
+      "country": "France",
+      "songs": [
+        "Everything in Its Right Place",
+        "Kid A",
+        "The National Anthem",
+        "How to Disappear Completely",
+        "Treefingers",
+        "Optimistic",
+        "In Limbo",
+        "Idioteque",
+        "Morning Bell",
+        "Motion Picture Soundtrack"
+      ],
+      "encore": [
+        "Pyramid Song",
+        "True Love Waits",
+        "Paranoid Android"
+      ],
+      "notes": "Full Kid A album performance"
+    },
+    {
+      "date": "2025-11-11",
+      "venue": "AccorHotels Arena",
+      "city": "Paris",
+      "country": "France",
+      "songs": [
+        "Burn the Witch",
+        "Daydreaming",
+        "Decks Dark",
+        "Desert Island Disk",
+        "Ful Stop",
+        "Glass Eyes",
+        "Identikit",
+        "The Numbers",
+        "Present Tense",
+        "Tinker Tailor Soldier Sailor Rich Man Poor Man Beggar Man Thief",
+        "True Love Waits"
+      ],
+      "encore": [
+        "Fake Plastic Trees",
+        "Karma Police",
+        "Street Spirit (Fade Out)"
+      ],
+      "notes": "Full A Moon Shaped Pool album performance"
+    },
+    {
+      "date": "2025-11-13",
+      "venue": "Sportpaleis",
+      "city": "Antwerp",
+      "country": "Belgium",
+      "songs": [
+        "15 Step",
+        "Bodysnatchers",
+        "Weird Fishes/Arpeggi",
+        "All I Need",
+        "Faust Arp",
+        "Reckoner",
+        "House of Cards",
+        "Jigsaw Falling into Place",
+        "Videotape",
+        "Nude"
+      ],
+      "encore": [
+        "True Love Waits",
+        "Karma Police",
+        "Paranoid Android"
+      ],
+      "notes": "In Rainbows complete performance"
+    },
+    {
+      "date": "2025-11-15",
+      "venue": "Lanxess Arena",
+      "city": "Cologne",
+      "country": "Germany",
+      "songs": [
+        "2 + 2 = 5",
+        "Sit Down. Stand Up.",
+        "Sail to the Moon",
+        "Backdrifts",
+        "Go to Sleep",
+        "Where I End and You Begin",
+        "We Suck Young Blood",
+        "The Gloaming",
+        "There There",
+        "I Will",
+        "A Punchup at a Wedding",
+        "Myxomatosis",
+        "Scatterbrain",
+        "A Wolf at the Door"
+      ],
+      "encore": [
+        "True Love Waits",
+        "Everything in Its Right Place"
+      ],
+      "notes": "Full Hail to the Thief album performance"
+    },
+    {
+      "date": "2025-11-17",
+      "venue": "O2 Arena",
+      "city": "London",
+      "country": "UK",
+      "songs": [
+        "Everything in Its Right Place",
+        "Fake Plastic Trees",
+        "Pyramid Song",
+        "Burn the Witch",
+        "There There",
+        "Reckoner",
+        "House of Cards",
+        "How to Disappear Completely",
+        "All I Need",
+        "Idioteque",
+        "Bodysnatchers",
+        "Nude",
+        "15 Step",
+        "No Surprises",
+        "Weird Fishes/Arpeggi",
+        "Daydreaming",
+        "2 + 2 = 5",
+        "Paranoid Android",
+        "Lucky",
+        "Karma Police"
+      ],
+      "encore": [
+        "True Love Waits",
+        "Motion Picture Soundtrack",
+        "Street Spirit (Fade Out)"
+      ],
+      "notes": "UK return after 7 years. Extended setlist."
+    },
+    {
+      "date": "2025-11-19",
+      "venue": "O2 Arena",
+      "city": "London",
+      "country": "UK",
+      "songs": [
+        "Airbag",
+        "Paranoid Android",
+        "Subterranean Homesick Alien",
+        "Exit Music (For a Film)",
+        "Let Down",
+        "Karma Police",
+        "Fitter Happier",
+        "Electioneering",
+        "Climbing Up the Walls",
+        "No Surprises",
+        "Lucky",
+        "The Tourist"
+      ],
+      "encore": [
+        "True Love Waits",
+        "Street Spirit (Fade Out)",
+        "Creep"
+      ],
+      "notes": "Full OK Computer album performance - 25+ years later"
+    },
+    {
+      "date": "2025-11-21",
+      "venue": "O2 Arena",
+      "city": "London",
+      "country": "UK",
+      "songs": [
+        "Bloom",
+        "Morning Mr Magpie",
+        "Little by Little",
+        "Feral",
+        "Lotus Flower",
+        "Codex",
+        "Give Up the Ghost",
+        "Separator"
+      ],
+      "encore": [
+        "True Love Waits",
+        "Everything in Its Right Place",
+        "Fake Plastic Trees",
+        "Paranoid Android"
+      ],
+      "notes": "Full The King of Limbs album performance"
+    },
+    {
+      "date": "2025-11-23",
+      "venue": "3Arena",
+      "city": "Dublin",
+      "country": "Ireland",
+      "songs": [
+        "Packt Like Sardines in a Crushd Tin Box",
+        "Pyramid Song",
+        "Pulk/Pull Revolving Doors",
+        "You and Whose Army?",
+        "I Might Be Wrong",
+        "Knives Out",
+        "Morning Bell/Amnesiac",
+        "Dollars and Cents",
+        "Hunting Bears",
+        "Like Spinning Plates",
+        "Life in a Glasshouse"
+      ],
+      "encore": [
+        "True Love Waits",
+        "Paranoid Android",
+        "Karma Police"
+      ],
+      "notes": "Full Amnesiac album performance"
+    }
+  ],
+  "song_frequency": {
+    "_comment": "Songs that appeared most frequently across the tour",
+    "True Love Waits": 12,
+    "Paranoid Android": 10,
+    "Karma Police": 8,
+    "Everything in Its Right Place": 7,
+    "Fake Plastic Trees": 5,
+    "Street Spirit (Fade Out)": 5,
+    "Pyramid Song": 5,
+    "Idioteque": 5,
+    "2 + 2 = 5": 4,
+    "How to Disappear Completely": 4,
+    "There There": 4,
+    "Bodysnatchers": 4,
+    "15 Step": 4,
+    "Nude": 4,
+    "Reckoner": 4,
+    "Weird Fishes/Arpeggi": 4,
+    "Burn the Witch": 4,
+    "Daydreaming": 4,
+    "Motion Picture Soundtrack": 3,
+    "Creep": 3
+  },
+  "era_distribution": {
+    "_comment": "Songs drawn from each album era",
+    "Pablo Honey": 1,
+    "The Bends": 4,
+    "OK Computer": 12,
+    "Kid A": 11,
+    "Amnesiac": 11,
+    "Hail to the Thief": 14,
+    "In Rainbows": 10,
+    "The King of Limbs": 8,
+    "A Moon Shaped Pool": 11
+  }
+}

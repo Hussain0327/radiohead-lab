@@ -1,24 +1,24 @@
 """
-Lightweight feature extraction for lyrics.
+Feature extraction for Radiohead lyrics analysis.
 
 - Tokenization and sentence segmentation (regex-based to avoid heavy deps).
 - Lexical stats: token counts, type-token ratio, avg token length, sentence counts.
-- Sentiment: prefers VADER if available; falls back to a small lexicon.
+- Comprehensive sentiment and emotion analysis via src/analysis/sentiment.py
 """
 
 from __future__ import annotations
 
 import re
-from functools import lru_cache
+import sys
+from pathlib import Path
 from typing import Dict, List
 
-try:
-    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-except Exception:  # pragma: no cover - optional dependency
-    try:
-        from nltk.sentiment import SentimentIntensityAnalyzer
-    except Exception:
-        SentimentIntensityAnalyzer = None  # type: ignore
+# Add src directory to path for imports
+src_dir = Path(__file__).resolve().parents[1]
+if str(src_dir) not in sys.path:
+    sys.path.insert(0, str(src_dir))
+
+from analysis.sentiment import compute_all_sentiment_features
 
 
 def basic_tokenize(text: str) -> List[str]:
@@ -50,72 +50,26 @@ def lexical_stats(tokens: List[str], sentences: List[str]) -> Dict[str, float]:
     }
 
 
-@lru_cache(maxsize=1)
-def _get_vader():
-    """Initialize VADER once if available and data is present."""
-    if SentimentIntensityAnalyzer is None:
-        return None
-    try:
-        return SentimentIntensityAnalyzer()
-    except Exception:
-        return None
-
-
-# Minimal fallback lexicon
-POSITIVE = {
-    "love",
-    "happy",
-    "beautiful",
-    "perfect",
-    "hope",
-    "angel",
-    "rainbow",
-    "wonderful",
-    "warm",
-    "alive",
-    "bloom",
-    "glow",
-}
-NEGATIVE = {
-    "hurt",
-    "cry",
-    "sad",
-    "cold",
-    "fear",
-    "die",
-    "alone",
-    "blood",
-    "drown",
-    "kill",
-    "broken",
-    "ghost",
-    "weapon",
-    "blackout",
-    "paranoid",
-}
-
-
-def sentiment_score(text: str, tokens: List[str]) -> float:
-    """
-    Return polarity in [-1, 1]. Uses VADER if available, else a tiny lexicon.
-    """
-    sia = _get_vader()
-    if sia:
-        try:
-            return round(sia.polarity_scores(text)["compound"], 4)
-        except Exception:
-            pass
-
-    if not tokens:
-        return 0.0
-    pos = sum(1 for t in tokens if t in POSITIVE)
-    neg = sum(1 for t in tokens if t in NEGATIVE)
-    return round((pos - neg) / len(tokens), 4)
-
-
 def compute_features(text: str) -> Dict[str, float | int]:
+    """
+    Compute all features for a lyric text:
+    - Lexical stats (token counts, TTR, sentence stats)
+    - VADER sentiment
+    - 8 emotion categories (joy, sadness, anger, fear, etc.)
+    - Coldness/warmth scores (key for H1 hypothesis)
+    - Alienation/connection scores
+    - Emotional intensity
+    """
     tokens = basic_tokenize(text)
     sentences = split_sentences(text)
+
+    # Lexical features
     lex = lexical_stats(tokens, sentences)
-    sent = sentiment_score(text, tokens)
-    return {**lex, "sentiment_score": sent}
+
+    # Comprehensive sentiment and emotion features
+    sentiment_features = compute_all_sentiment_features(text)
+
+    # Keep 'sentiment_score' as alias for vader_compound for backwards compatibility
+    sentiment_features["sentiment_score"] = sentiment_features["vader_compound"]
+
+    return {**lex, **sentiment_features}

@@ -51,21 +51,18 @@ plt.rcParams['font.family'] = 'sans-serif'
 
 
 def load_data():
-    """Load the web data export."""
     path = Path(__file__).resolve().parents[2] / "web" / "src" / "data" / "radiohead_web_data.json"
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def ensure_output_dir():
-    """Ensure results/figures/ directory exists."""
     out_dir = Path(__file__).resolve().parents[2] / "results" / "figures"
     out_dir.mkdir(parents=True, exist_ok=True)
     return out_dir
 
 
 def fig_coldness_by_album(data, out_dir):
-    """Generate coldness index by album chart."""
     albums = sorted(data["albums"], key=lambda x: ALBUM_ORDER.index(x["album"]))
 
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -97,7 +94,6 @@ def fig_coldness_by_album(data, out_dir):
 
 
 def fig_sentiment_timeline(data, out_dir):
-    """Generate sentiment over time chart."""
     albums = sorted(data["albums"], key=lambda x: x["year"])
 
     fig, ax = plt.subplots(figsize=(12, 6))
@@ -127,7 +123,6 @@ def fig_sentiment_timeline(data, out_dir):
 
 
 def fig_type_token_ratio(data, out_dir):
-    """Generate type-token ratio (lexical diversity) chart."""
     lexical = data.get("lexical_evolution", {}).get("album_metrics", [])
     if not lexical:
         print("  Skipping: type_token_ratio.png (no lexical data)")
@@ -158,7 +153,6 @@ def fig_type_token_ratio(data, out_dir):
 
 
 def fig_wait_times(data, out_dir):
-    """Generate song wait times chart."""
     wait_data = data.get("the_wait", {})
     long_waiters = wait_data.get("long_waiters", [])[:10]
 
@@ -187,7 +181,6 @@ def fig_wait_times(data, out_dir):
 
 
 def fig_era_distribution(data, out_dir):
-    """Generate 2025 tour era distribution pie chart."""
     tour = data.get("tour_2025", {})
     era_dist = tour.get("era_distribution", {}).get("by_era", {})
 
@@ -228,7 +221,6 @@ def fig_era_distribution(data, out_dir):
 
 
 def fig_emotion_comparison(data, out_dir):
-    """Generate emotion comparison across albums."""
     albums = sorted(data["albums"], key=lambda x: ALBUM_ORDER.index(x["album"]))
 
     emotions = ["joy", "sadness", "anger", "fear"]
@@ -254,7 +246,6 @@ def fig_emotion_comparison(data, out_dir):
 
 
 def fig_word_count(data, out_dir):
-    """Generate average word count by album."""
     albums = sorted(data["albums"], key=lambda x: ALBUM_ORDER.index(x["album"]))
 
     fig, ax = plt.subplots(figsize=(12, 6))

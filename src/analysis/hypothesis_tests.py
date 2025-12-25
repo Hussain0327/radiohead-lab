@@ -34,7 +34,6 @@ except ImportError:
 
 
 def load_data(path: Path | None = None) -> List[Dict[str, Any]]:
-    """Load the complete Radiohead dataset."""
     if path is None:
         path = Path(__file__).resolve().parents[2] / "data" / "exports" / "radiohead_complete.json"
 
@@ -43,7 +42,6 @@ def load_data(path: Path | None = None) -> List[Dict[str, Any]]:
 
 
 def group_by_album(data: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
-    """Group tracks by album."""
     albums = defaultdict(list)
     for track in data:
         albums[track["album_name"]].append(track)
@@ -51,7 +49,6 @@ def group_by_album(data: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]
 
 
 def group_by_era(data: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
-    """Group tracks by era."""
     eras = defaultdict(list)
     for track in data:
         eras[track["era"]].append(track)
@@ -59,7 +56,6 @@ def group_by_era(data: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
 
 
 def album_means(data: List[Dict[str, Any]], metric: str) -> Dict[str, float]:
-    """Calculate mean of a metric for each album."""
     by_album = group_by_album(data)
     means = {}
     for album, tracks in by_album.items():
@@ -70,10 +66,6 @@ def album_means(data: List[Dict[str, Any]], metric: str) -> Dict[str, float]:
 
 
 def mann_whitney_test(group1: List[float], group2: List[float]) -> Dict[str, Any]:
-    """
-    Perform Mann-Whitney U test (non-parametric).
-    Use this instead of t-test because we can't assume normality with small samples.
-    """
     if stats is None:
         return {"error": "scipy not available", "u_statistic": None, "p_value": None}
 
@@ -97,7 +89,6 @@ def mann_whitney_test(group1: List[float], group2: List[float]) -> Dict[str, Any
 
 
 def effect_size_cohens_d(group1: List[float], group2: List[float]) -> float:
-    """Calculate Cohen's d effect size."""
     n1, n2 = len(group1), len(group2)
     mean1 = sum(group1) / n1
     mean2 = sum(group2) / n2
@@ -118,15 +109,6 @@ def effect_size_cohens_d(group1: List[float], group2: List[float]) -> float:
 # =============================================================================
 
 def test_h1_coldness(data: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    H1: Kid A's "coldness" is overstated.
-
-    Test whether Kid A's lyrics are actually colder/more negative than
-    pre-2000 albums (The Bends, OK Computer) using our coldness_index metric.
-
-    If p > 0.05, we fail to reject the null hypothesis that Kid A's lyrics
-    are as warm as earlier work - supporting H1.
-    """
     by_album = group_by_album(data)
 
     # Pre-2000 rock era (The Bends, OK Computer)
@@ -171,12 +153,6 @@ def test_h1_coldness(data: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def test_h1_sentiment(data: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    Additional H1 test: Compare sentiment between eras.
-
-    Test whether Kid A era (Kid A, Amnesiac) sentiment differs from
-    classic rock era (The Bends, OK Computer).
-    """
     by_album = group_by_album(data)
 
     rock_era = []
@@ -211,12 +187,6 @@ def test_h1_sentiment(data: List[Dict[str, Any]]) -> Dict[str, Any]:
 # =============================================================================
 
 def test_h2_fragmentation(data: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    H2: Vocabulary fragmentation increased, not negativity.
-
-    Test whether type-token ratio (lexical diversity) and sentence structure
-    changed more than sentiment over time.
-    """
     by_album = group_by_album(data)
 
     # Calculate album-level metrics
@@ -278,12 +248,6 @@ def test_h2_fragmentation(data: List[Dict[str, Any]]) -> Dict[str, Any]:
 # =============================================================================
 
 def test_h4_in_rainbows(data: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    H4: In Rainbows is the outlier, not Kid A.
-
-    Test whether In Rainbows represents a larger emotional shift
-    compared to adjacent albums.
-    """
     by_album = group_by_album(data)
 
     # Compare In Rainbows to its neighbors
@@ -336,12 +300,6 @@ def test_h4_in_rainbows(data: List[Dict[str, Any]]) -> Dict[str, Any]:
 # =============================================================================
 
 def analyze_moon_shaped_pool(data: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    Analyze A Moon Shaped Pool as an emotional outlier.
-
-    The album was released months before Rachel Owen's death.
-    Glass Eyes and True Love Waits in particular carry immense weight.
-    """
     by_album = group_by_album(data)
 
     amsp = by_album.get("A Moon Shaped Pool", [])
@@ -396,7 +354,6 @@ def analyze_moon_shaped_pool(data: List[Dict[str, Any]]) -> Dict[str, Any]:
 # =============================================================================
 
 def generate_full_report() -> Dict[str, Any]:
-    """Generate a complete hypothesis testing report."""
     data = load_data()
 
     return {

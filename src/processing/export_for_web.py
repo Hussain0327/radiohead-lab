@@ -28,14 +28,12 @@ from analysis.hypothesis_tests import generate_full_report
 
 
 def load_track_data() -> list:
-    """Load the complete track data."""
     path = Path(__file__).resolve().parents[2] / "data" / "exports" / "radiohead_complete.json"
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def build_album_summary(tracks: list) -> list:
-    """Build album-level summary statistics."""
     albums = {}
 
     for track in tracks:
@@ -87,7 +85,6 @@ def build_album_summary(tracks: list) -> list:
 
 
 def get_standout_tracks(tracks: list) -> dict:
-    """Identify standout tracks for various metrics."""
     if not tracks:
         return {}
 
@@ -113,7 +110,6 @@ def get_standout_tracks(tracks: list) -> dict:
 
 
 def export_all():
-    """Export all data for web visualization."""
     print("Loading track data...")
     tracks = load_track_data()
 
@@ -129,14 +125,14 @@ def export_all():
     print("Loading setlist archaeology...")
     try:
         setlist_data = export_setlist()
-    except Exception as e:
+    except (FileNotFoundError, KeyError, ValueError, ImportError) as e:
         print(f"  Warning: Could not load setlist data: {e}")
         setlist_data = None
 
     print("Loading lexical diversity...")
     try:
         lexical_data = export_lexical()
-    except Exception as e:
+    except (FileNotFoundError, KeyError, ValueError, ImportError) as e:
         print(f"  Warning: Could not load lexical data: {e}")
         lexical_data = None
 
@@ -145,7 +141,7 @@ def export_all():
         hypothesis_data = generate_full_report()
         # Clean up numpy types for JSON serialization
         hypothesis_data = json.loads(json.dumps(hypothesis_data, default=str))
-    except Exception as e:
+    except (FileNotFoundError, KeyError, ValueError, ImportError) as e:
         print(f"  Warning: Could not run hypothesis tests: {e}")
         hypothesis_data = None
 

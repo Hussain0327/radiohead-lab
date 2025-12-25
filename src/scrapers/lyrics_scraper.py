@@ -33,7 +33,6 @@ def search_song(query: str) -> Dict[str, object] | None:
 
 
 def scrape_lyrics(url: str) -> str:
-    """Basic HTML scraper for Genius lyrics page."""
     resp = requests.get(url, timeout=10)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")

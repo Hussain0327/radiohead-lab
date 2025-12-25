@@ -38,7 +38,6 @@ def _get_token() -> str:
 
 
 def search_track(query: str, token: str) -> str | None:
-    """Return the first track ID for a query."""
     headers = {"Authorization": f"Bearer {token}"}
     params = {"q": query, "type": "track", "limit": 1}
     resp = requests.get(SEARCH_URL, headers=headers, params=params, timeout=10)
@@ -62,7 +61,6 @@ def fetch_audio_features(track_ids: List[str], token: str) -> List[Dict[str, obj
 
 
 def enrich_tracks_with_audio_features(tracks: List[dict]) -> List[dict]:
-    """Attach Spotify audio features to track dicts where possible."""
     token = _get_token()
     enriched = []
     for row in tracks:

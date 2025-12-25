@@ -28,13 +28,11 @@ ALBUM_META: Dict[str, Dict[str, str | int]] = {
 
 
 def clean_text(value: str) -> str:
-    """Normalize whitespace and strip non-breaking spaces."""
     normalized = value.replace("\xa0", " ")
     return re.sub(r"\s+", " ", normalized).strip()
 
 
 def strip_by_radiohead(value: str) -> str:
-    """Remove the trailing 'by Radiohead' tag."""
     cleaned = clean_text(value)
     return re.sub(r"\s*by\s+Radiohead$", "", cleaned, flags=re.IGNORECASE).strip()
 

@@ -17,7 +17,6 @@ from typing import Dict, List, Any
 
 
 def load_live_debuts(path: Path | None = None) -> Dict[str, Any]:
-    """Load live debut data from JSON."""
     if path is None:
         path = Path(__file__).resolve().parents[2] / "data" / "raw" / "live_debuts.json"
 
@@ -26,12 +25,6 @@ def load_live_debuts(path: Path | None = None) -> Dict[str, Any]:
 
 
 def calculate_wait_time(first_live: str, studio_release: str) -> Dict[str, Any]:
-    """
-    Calculate the wait time between live debut and studio release.
-
-    Returns:
-        dict with years, months, days, and total_days
-    """
     live_date = datetime.strptime(first_live, "%Y-%m-%d")
     release_date = datetime.strptime(studio_release, "%Y-%m-%d")
 
@@ -54,12 +47,6 @@ def calculate_wait_time(first_live: str, studio_release: str) -> Dict[str, Any]:
 
 
 def get_all_wait_times() -> List[Dict[str, Any]]:
-    """
-    Get wait times for all songs with live debut data.
-
-    Returns:
-        List of dicts with song info and wait times, sorted by wait time descending
-    """
     data = load_live_debuts()
     songs = data.get("songs", {})
 
@@ -89,13 +76,11 @@ def get_all_wait_times() -> List[Dict[str, Any]]:
 
 
 def get_long_waiters(min_years: float = 5.0) -> List[Dict[str, Any]]:
-    """Get songs that waited at least min_years for studio release."""
     all_waits = get_all_wait_times()
     return [s for s in all_waits if s["wait_years"] >= min_years]
 
 
 def get_wait_stats() -> Dict[str, Any]:
-    """Get summary statistics about song wait times."""
     all_waits = get_all_wait_times()
 
     # Filter to only positive wait times (released after live debut)
@@ -119,17 +104,6 @@ def get_wait_stats() -> Dict[str, Any]:
 
 
 def true_love_waits_story() -> Dict[str, Any]:
-    """
-    Get the full True Love Waits story - the emotional centerpiece.
-
-    21 years of waiting. First played in December 1995.
-    Finally released on A Moon Shaped Pool in May 2016.
-    That was the year Rachel Owen, Thom Yorke's partner of 23 years
-    and mother of their two children, passed away.
-
-    Twenty-one years of waiting to release a song called "True Love Waits,"
-    and when they finally did, it was a goodbye.
-    """
     data = load_live_debuts()
     tlw = data.get("songs", {}).get("True Love Waits", {})
 
@@ -172,7 +146,6 @@ def true_love_waits_story() -> Dict[str, Any]:
 
 
 def export_wait_data_for_web() -> Dict[str, Any]:
-    """Export all wait time data formatted for web visualization."""
     return {
         "all_songs": get_all_wait_times(),
         "long_waiters": get_long_waiters(min_years=5.0),

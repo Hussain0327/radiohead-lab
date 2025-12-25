@@ -61,7 +61,6 @@ THEME_LABELS = {
 
 
 def load_data(path: Path | None = None) -> List[Dict[str, Any]]:
-    """Load the complete Radiohead dataset."""
     if path is None:
         path = Path(__file__).resolve().parents[2] / "data" / "exports" / "radiohead_complete.json"
 
@@ -70,7 +69,6 @@ def load_data(path: Path | None = None) -> List[Dict[str, Any]]:
 
 
 def preprocess_lyrics(text: str) -> str:
-    """Clean lyrics for topic modeling."""
     # Lowercase
     text = text.lower()
     # Remove punctuation
@@ -86,7 +84,6 @@ def preprocess_lyrics(text: str) -> str:
 
 
 def extract_keywords(data: List[Dict[str, Any]], top_n: int = 50) -> List[Tuple[str, int]]:
-    """Extract most common non-stop words across all lyrics."""
     all_words = []
     for track in data:
         clean = preprocess_lyrics(track["lyrics"])
@@ -96,7 +93,6 @@ def extract_keywords(data: List[Dict[str, Any]], top_n: int = 50) -> List[Tuple[
 
 
 def extract_keywords_by_album(data: List[Dict[str, Any]], top_n: int = 20) -> Dict[str, List[Tuple[str, int]]]:
-    """Extract most common words per album."""
     by_album = defaultdict(list)
     for track in data:
         by_album[track["album_name"]].append(preprocess_lyrics(track["lyrics"]))
@@ -110,11 +106,6 @@ def extract_keywords_by_album(data: List[Dict[str, Any]], top_n: int = 20) -> Di
 
 
 def run_lda(data: List[Dict[str, Any]], n_topics: int = 5) -> Dict[str, Any]:
-    """
-    Run LDA topic modeling on the lyrics corpus.
-
-    Returns topic distributions and top words per topic.
-    """
     if not SKLEARN_AVAILABLE:
         return {"error": "sklearn not available"}
 
@@ -185,12 +176,6 @@ def run_lda(data: List[Dict[str, Any]], n_topics: int = 5) -> Dict[str, Any]:
 
 
 def test_h3_thematic_continuity(data: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    H3: Thematic clustering reveals more continuity than change.
-
-    Analyze whether core themes (technology, isolation, identity, decay)
-    remain stable across albums even as the sound changed.
-    """
     # Get overall keywords
     overall_keywords = extract_keywords(data, top_n=30)
 
@@ -237,7 +222,6 @@ def test_h3_thematic_continuity(data: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def export_for_web() -> Dict[str, Any]:
-    """Export topic modeling results for web visualization."""
     data = load_data()
 
     keywords = extract_keywords(data, top_n=50)

@@ -22,12 +22,10 @@ from analysis.sentiment import compute_all_sentiment_features
 
 
 def basic_tokenize(text: str) -> List[str]:
-    """Simple word tokenizer; lowercases and keeps apostrophes inside words."""
     return re.findall(r"[a-zA-Z']+", text.lower())
 
 
 def split_sentences(text: str) -> List[str]:
-    """Very rough sentence split on punctuation."""
     parts = re.split(r"[.!?]+", text)
     return [p.strip() for p in parts if p.strip()]
 
@@ -51,15 +49,6 @@ def lexical_stats(tokens: List[str], sentences: List[str]) -> Dict[str, float]:
 
 
 def compute_features(text: str) -> Dict[str, float | int]:
-    """
-    Compute all features for a lyric text:
-    - Lexical stats (token counts, TTR, sentence stats)
-    - VADER sentiment
-    - 8 emotion categories (joy, sadness, anger, fear, etc.)
-    - Coldness/warmth scores (key for H1 hypothesis)
-    - Alienation/connection scores
-    - Emotional intensity
-    """
     tokens = basic_tokenize(text)
     sentences = split_sentences(text)
 

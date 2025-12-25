@@ -140,7 +140,6 @@ SONG_ALBUM = {
 
 
 def load_setlists(path: Path | None = None) -> Dict[str, Any]:
-    """Load 2025 tour setlist data."""
     if path is None:
         path = Path(__file__).resolve().parents[2] / "data" / "raw" / "tour_2025_setlists.json"
 
@@ -149,7 +148,6 @@ def load_setlists(path: Path | None = None) -> Dict[str, Any]:
 
 
 def get_all_songs_played(setlists: List[Dict[str, Any]]) -> List[str]:
-    """Get flat list of all songs played across all shows."""
     songs = []
     for show in setlists:
         songs.extend(show.get("songs", []))
@@ -158,7 +156,6 @@ def get_all_songs_played(setlists: List[Dict[str, Any]]) -> List[str]:
 
 
 def calculate_song_frequencies(setlists: List[Dict[str, Any]]) -> Dict[str, int]:
-    """Count how many shows each song appeared in."""
     song_shows = defaultdict(set)
 
     for i, show in enumerate(setlists):
@@ -170,7 +167,6 @@ def calculate_song_frequencies(setlists: List[Dict[str, Any]]) -> Dict[str, int]
 
 
 def calculate_era_distribution(setlists: List[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
-    """Analyze which eras the tour drew from."""
     all_songs = get_all_songs_played(setlists)
     total_plays = len(all_songs)
 
@@ -209,11 +205,6 @@ def calculate_era_distribution(setlists: List[Dict[str, Any]]) -> Dict[str, Dict
 
 
 def analyze_true_love_waits(setlists: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """
-    Analyze True Love Waits appearances across the tour.
-
-    TLW appeared in every single show of the 2025 tour - a deliberate choice.
-    """
     appearances = 0
     positions = []
 
@@ -242,7 +233,6 @@ def analyze_true_love_waits(setlists: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def analyze_album_complete_performances(setlists: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Find shows where complete albums were performed."""
     complete_albums = []
 
     for show in setlists:
@@ -259,7 +249,6 @@ def analyze_album_complete_performances(setlists: List[Dict[str, Any]]) -> List[
 
 
 def get_setlist_variety_stats(setlists: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """Calculate how much setlists varied across the tour."""
     all_unique_songs = set()
     show_sizes = []
 
@@ -278,7 +267,6 @@ def get_setlist_variety_stats(setlists: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def generate_full_report() -> Dict[str, Any]:
-    """Generate complete 2025 tour analysis."""
     data = load_setlists()
     setlists = data.get("setlists", [])
     tour_info = data.get("tour_info", {})
@@ -309,7 +297,6 @@ def generate_full_report() -> Dict[str, Any]:
 
 
 def export_for_web() -> Dict[str, Any]:
-    """Export setlist data for web visualization."""
     return generate_full_report()
 
 

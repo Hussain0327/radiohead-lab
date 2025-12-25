@@ -18,7 +18,6 @@ from collections import defaultdict
 
 
 def load_data(path: Path | None = None) -> List[Dict[str, Any]]:
-    """Load the complete Radiohead dataset."""
     if path is None:
         path = Path(__file__).resolve().parents[2] / "data" / "exports" / "radiohead_complete.json"
 
@@ -27,7 +26,6 @@ def load_data(path: Path | None = None) -> List[Dict[str, Any]]:
 
 
 def album_order() -> List[str]:
-    """Return albums in chronological order."""
     return [
         "Pablo Honey",
         "The Bends",
@@ -42,10 +40,6 @@ def album_order() -> List[str]:
 
 
 def calculate_repetition_ratio(lyrics: str) -> float:
-    """
-    Calculate how repetitive lyrics are.
-    Higher ratio = more repetition.
-    """
     words = re.findall(r"[a-zA-Z']+", lyrics.lower())
     if not words:
         return 0.0
@@ -60,7 +54,6 @@ def calculate_repetition_ratio(lyrics: str) -> float:
 
 
 def calculate_long_word_ratio(lyrics: str, min_length: int = 7) -> float:
-    """Calculate ratio of long words (complex vocabulary)."""
     words = re.findall(r"[a-zA-Z]+", lyrics.lower())
     if not words:
         return 0.0
@@ -70,7 +63,6 @@ def calculate_long_word_ratio(lyrics: str, min_length: int = 7) -> float:
 
 
 def group_by_album(data: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
-    """Group tracks by album."""
     albums = defaultdict(list)
     for track in data:
         albums[track["album_name"]].append(track)
@@ -78,7 +70,6 @@ def group_by_album(data: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]
 
 
 def calculate_album_metrics(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Calculate lexical metrics for each album in chronological order."""
     by_album = group_by_album(data)
 
     results = []
@@ -120,11 +111,6 @@ def calculate_album_metrics(data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
 
 
 def analyze_evolution() -> Dict[str, Any]:
-    """
-    Analyze how lexical diversity evolved over time.
-
-    Key finding: Did lyrics become more abstract/fragmented (H2)?
-    """
     data = load_data()
     album_metrics = calculate_album_metrics(data)
 
@@ -158,7 +144,6 @@ def analyze_evolution() -> Dict[str, Any]:
 
 
 def get_track_level_metrics(data: List[Dict[str, Any]] | None = None) -> List[Dict[str, Any]]:
-    """Get per-track lexical metrics for detailed visualization."""
     if data is None:
         data = load_data()
 
@@ -180,7 +165,6 @@ def get_track_level_metrics(data: List[Dict[str, Any]] | None = None) -> List[Di
 
 
 def export_for_web() -> Dict[str, Any]:
-    """Export lexical diversity data for web visualization."""
     data = load_data()
 
     return {

@@ -18,7 +18,6 @@ USER_AGENT = "radiohead-data-lab/0.1"
 
 
 def fetch_tour_setlists(artist_mbid: str, year: int, page: int = 1) -> dict:
-    """Fetch one page of setlists for an artist and year."""
     api_key = os.getenv("SETLISTFM_API_KEY")
     if not api_key:
         raise RuntimeError("SETLISTFM_API_KEY not set")
@@ -31,7 +30,6 @@ def fetch_tour_setlists(artist_mbid: str, year: int, page: int = 1) -> dict:
 
 
 def collect_all_setlists(artist_mbid: str, year: int) -> List[dict]:
-    """Paginate through setlists for the tour."""
     results: List[dict] = []
     page = 1
     while True:
@@ -47,7 +45,6 @@ def collect_all_setlists(artist_mbid: str, year: int) -> List[dict]:
 
 
 def normalize_setlist(s: dict) -> Dict[str, object]:
-    """Flatten a setlist entry into a simpler shape."""
     songs = []
     for set_data in s.get("sets", {}).get("set", []):
         for song in set_data.get("song", []):
@@ -65,7 +62,6 @@ def normalize_setlist(s: dict) -> Dict[str, object]:
 
 
 def export_setlists_json(setlists: List[dict], out_path: str) -> None:
-    """Write normalized setlists to disk."""
     import json
     from pathlib import Path
 

@@ -105,7 +105,6 @@ ALIENATION_LEXICON = {
 
 
 def basic_tokenize(text: str) -> List[str]:
-    """Simple word tokenizer; lowercases and keeps apostrophes inside words."""
     return re.findall(r"[a-zA-Z']+", text.lower())
 
 
@@ -115,12 +114,11 @@ def _get_vader():
         return None
     try:
         return SentimentIntensityAnalyzer()
-    except Exception:
+    except (ImportError, OSError, LookupError):
         return None
 
 
 def vader_sentiment(text: str) -> Dict[str, float]:
-    """Get VADER sentiment scores."""
     sia = _get_vader()
     if sia:
         scores = sia.polarity_scores(text)
@@ -139,10 +137,6 @@ def vader_sentiment(text: str) -> Dict[str, float]:
 
 
 def emotion_scores(tokens: List[str]) -> Dict[str, float]:
-    """
-    Calculate emotion scores based on lexicon matching.
-    Returns normalized scores (0-1) for each emotion category.
-    """
     if not tokens:
         return {f"emotion_{e}": 0.0 for e in EMOTION_LEXICONS.keys()}
 
@@ -160,15 +154,6 @@ def emotion_scores(tokens: List[str]) -> Dict[str, float]:
 
 
 def coldness_score(tokens: List[str]) -> Dict[str, float]:
-    """
-    Calculate coldness vs warmth score.
-    Key metric for testing H1 hypothesis about Kid A.
-
-    Returns:
-        coldness: ratio of cold words (0-1)
-        warmth: ratio of warm words (0-1)
-        coldness_index: (cold - warm) / total, ranges -1 to 1
-    """
     if not tokens:
         return {"coldness": 0.0, "warmth": 0.0, "coldness_index": 0.0}
 
@@ -193,10 +178,6 @@ def coldness_score(tokens: List[str]) -> Dict[str, float]:
 
 
 def alienation_score(tokens: List[str]) -> Dict[str, float]:
-    """
-    Calculate alienation vs connection score.
-    Measures emotional distance/isolation in lyrics.
-    """
     if not tokens:
         return {"alienation": 0.0, "connection": 0.0, "alienation_index": 0.0}
 
@@ -220,10 +201,6 @@ def alienation_score(tokens: List[str]) -> Dict[str, float]:
 
 
 def emotional_intensity(tokens: List[str]) -> float:
-    """
-    Calculate overall emotional intensity/arousal.
-    High intensity = lots of emotion words (any type).
-    """
     if not tokens:
         return 0.0
 
@@ -236,16 +213,6 @@ def emotional_intensity(tokens: List[str]) -> float:
 
 
 def compute_all_sentiment_features(text: str) -> Dict[str, float]:
-    """
-    Compute comprehensive sentiment and emotion features for a text.
-
-    Returns dict with:
-    - VADER scores (compound, pos, neg, neu)
-    - 8 emotion category scores
-    - coldness/warmth metrics
-    - alienation/connection metrics
-    - emotional intensity
-    """
     tokens = basic_tokenize(text)
 
     features = {}
@@ -268,7 +235,5 @@ def compute_all_sentiment_features(text: str) -> Dict[str, float]:
     return features
 
 
-# Convenience function for quick sentiment
 def get_sentiment(text: str) -> float:
-    """Simple interface - returns VADER compound score."""
     return vader_sentiment(text)["vader_compound"]

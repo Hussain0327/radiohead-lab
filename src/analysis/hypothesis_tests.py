@@ -27,6 +27,8 @@ from pathlib import Path
 from typing import Dict, List, Any, Tuple
 from collections import defaultdict
 
+from analysis.topic_modeling import test_h3_thematic_continuity
+
 try:
     from scipy import stats
 except ImportError:
@@ -211,17 +213,31 @@ def test_h2_fragmentation(data: List[Dict[str, Any]]) -> Dict[str, Any]:
             late_ttr.extend([t["type_token_ratio"] for t in tracks])
             late_sent.extend([t["sentiment_score"] for t in tracks])
 
+    early_sentence_len = []
+    late_sentence_len = []
+
+    for album, tracks in by_album.items():
+        if album in early_albums:
+            early_sentence_len.extend([t["avg_sentence_length"] for t in tracks])
+        elif album in late_albums:
+            late_sentence_len.extend([t["avg_sentence_length"] for t in tracks])
+
     ttr_test = mann_whitney_test(early_ttr, late_ttr)
+    sentence_test = mann_whitney_test(early_sentence_len, late_sentence_len)
     sent_test = mann_whitney_test(early_sent, late_sent)
 
     ttr_effect = effect_size_cohens_d(early_ttr, late_ttr)
+    sentence_effect = effect_size_cohens_d(early_sentence_len, late_sentence_len)
     sent_effect = effect_size_cohens_d(early_sent, late_sent)
+
+    lexical_shift = max(abs(ttr_effect), abs(sentence_effect))
 
     return {
         "hypothesis": "H2: Vocabulary fragmentation increased, not negativity",
         "description": (
             "Testing whether lexical diversity (type-token ratio) changed "
-            "more than sentiment between early and late eras."
+            "more than sentiment between early and late eras, with sentence "
+            "length as a proxy for fragmentation."
         ),
         "comparison": "Early (PH/Bends/OKC) vs Late (IR/TKOL/AMSP)",
         "lexical_diversity": {
@@ -229,15 +245,19 @@ def test_h2_fragmentation(data: List[Dict[str, Any]]) -> Dict[str, Any]:
             "effect_size": ttr_effect,
             "by_album": ttr_by_album
         },
+        "sentence_length": {
+            "test": sentence_test,
+            "effect_size": sentence_effect,
+            "by_album": sentence_len_by_album
+        },
         "sentiment": {
             "test": sent_test,
             "effect_size": sent_effect,
             "by_album": sentiment_by_album
         },
-        "sentence_length_by_album": sentence_len_by_album,
         "interpretation": (
-            "SUPPORTS H2: Lexical metrics changed more than sentiment."
-            if abs(ttr_effect) > abs(sent_effect) else
+            "SUPPORTS H2: Lexical metrics (diversity/sentence length) shifted more than sentiment."
+            if lexical_shift > abs(sent_effect) else
             "CHALLENGES H2: Sentiment changed as much as lexical metrics."
         )
     }
@@ -365,6 +385,7 @@ def generate_full_report() -> Dict[str, Any]:
         "h1_coldness_test": test_h1_coldness(data),
         "h1_sentiment_test": test_h1_sentiment(data),
         "h2_fragmentation_test": test_h2_fragmentation(data),
+        "h3_thematic_continuity_test": test_h3_thematic_continuity(data),
         "h4_in_rainbows_test": test_h4_in_rainbows(data),
         "moon_shaped_pool_analysis": analyze_moon_shaped_pool(data)
     }

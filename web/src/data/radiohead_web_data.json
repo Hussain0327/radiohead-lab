@@ -6366,15 +6366,15 @@
     "dataset_info": {
       "total_tracks": 100,
       "albums": [
-        "Hail to the Thief",
-        "Amnesiac",
-        "The King of Limbs",
-        "A Moon Shaped Pool",
-        "OK Computer",
-        "Kid A",
+        "The Bends",
         "Pablo Honey",
+        "Hail to the Thief",
+        "Kid A",
         "In Rainbows",
-        "The Bends"
+        "The King of Limbs",
+        "OK Computer",
+        "Amnesiac",
+        "A Moon Shaped Pool"
       ],
       "years_span": "1993-2016"
     },
@@ -6384,16 +6384,9 @@
       "comparison": "Pre-2000 (The Bends, OK Computer) vs Kid A",
       "test": "Mann-Whitney U (two-sided)",
       "results": {
-        "u_statistic": 104.0,
-        "p_value": 0.876359,
-        "significant_05": "False",
-        "significant_01": "False",
-        "group1_median": 0.0,
-        "group2_median": 0.0,
-        "group1_mean": -0.3236,
-        "group2_mean": -0.2593,
-        "group1_n": 24,
-        "group2_n": 9
+        "error": "scipy not available",
+        "u_statistic": null,
+        "p_value": null
       },
       "effect_size_cohens_d": -0.1186,
       "effect_interpretation": "negligible (<0.2)",
@@ -6415,36 +6408,22 @@
       "comparison": "Rock Era (Bends, OKC) vs Reinvention Era (Kid A, Amnesiac)",
       "test": "Mann-Whitney U",
       "results": {
-        "u_statistic": 228.0,
-        "p_value": 1.0,
-        "significant_05": "False",
-        "significant_01": "False",
-        "group1_median": 0.0,
-        "group2_median": 0.0,
-        "group1_mean": 0.0,
-        "group2_mean": 0.0,
-        "group1_n": 24,
-        "group2_n": 19
+        "error": "scipy not available",
+        "u_statistic": null,
+        "p_value": null
       },
       "effect_size_cohens_d": 0.0,
       "interpretation": "SUPPORTS H1: No significant sentiment difference between eras."
     },
     "h2_fragmentation_test": {
       "hypothesis": "H2: Vocabulary fragmentation increased, not negativity",
-      "description": "Testing whether lexical diversity (type-token ratio) changed more than sentiment between early and late eras.",
+      "description": "Testing whether lexical diversity (type-token ratio) changed more than sentiment between early and late eras, with sentence length as a proxy for fragmentation.",
       "comparison": "Early (PH/Bends/OKC) vs Late (IR/TKOL/AMSP)",
       "lexical_diversity": {
         "test": {
-          "u_statistic": 451.0,
-          "p_value": 0.180489,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.4312,
-          "group2_median": 0.4728,
-          "group1_mean": 0.4425,
-          "group2_mean": 0.4691,
-          "group1_n": 36,
-          "group2_n": 31
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         },
         "effect_size": -0.2248,
         "by_album": {
@@ -6459,18 +6438,30 @@
           "A Moon Shaped Pool": 0.4659923076923077
         }
       },
+      "sentence_length": {
+        "test": {
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
+        },
+        "effect_size": 0.102,
+        "by_album": {
+          "Pablo Honey": 125.0,
+          "The Bends": 166.58333333333334,
+          "OK Computer": 141.0,
+          "Kid A": 133.0,
+          "Amnesiac": 125.3,
+          "Hail to the Thief": 167.0,
+          "In Rainbows": 136.2,
+          "The King of Limbs": 138.125,
+          "A Moon Shaped Pool": 139.23076923076923
+        }
+      },
       "sentiment": {
         "test": {
-          "u_statistic": 558.0,
-          "p_value": 1.0,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.0,
-          "group2_median": 0.0,
-          "group1_mean": 0.0,
-          "group2_mean": 0.0,
-          "group1_n": 36,
-          "group2_n": 31
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         },
         "effect_size": 0.0,
         "by_album": {
@@ -6485,72 +6476,1209 @@
           "A Moon Shaped Pool": 0.0
         }
       },
-      "sentence_length_by_album": {
-        "Pablo Honey": 125.0,
-        "The Bends": 166.58333333333334,
-        "OK Computer": 141.0,
-        "Kid A": 133.0,
-        "Amnesiac": 125.3,
-        "Hail to the Thief": 167.0,
-        "In Rainbows": 136.2,
-        "The King of Limbs": 138.125,
-        "A Moon Shaped Pool": 139.23076923076923
+      "interpretation": "SUPPORTS H2: Lexical metrics (diversity/sentence length) shifted more than sentiment."
+    },
+    "h3_thematic_continuity_test": {
+      "hypothesis": "H3: Thematic clustering reveals more continuity than change",
+      "description": "Testing whether Radiohead's core thematic concerns remain stable across albums, even as production and delivery changed.",
+      "overall_keywords": [
+        [
+          "raindrops",
+          48
+        ],
+        [
+          "want",
+          46
+        ],
+        [
+          "back",
+          42
+        ],
+        [
+          "hurt",
+          40
+        ],
+        [
+          "everything",
+          34
+        ],
+        [
+          "nothing",
+          34
+        ],
+        [
+          "never",
+          31
+        ],
+        [
+          "feel",
+          31
+        ],
+        [
+          "arms",
+          31
+        ],
+        [
+          "around",
+          29
+        ],
+        [
+          "alive",
+          29
+        ],
+        [
+          "love",
+          28
+        ],
+        [
+          "time",
+          28
+        ],
+        [
+          "broken",
+          28
+        ],
+        [
+          "mess",
+          27
+        ],
+        [
+          "try",
+          26
+        ],
+        [
+          "eyes",
+          26
+        ],
+        [
+          "little",
+          26
+        ],
+        [
+          "really",
+          26
+        ],
+        [
+          "think",
+          26
+        ],
+        [
+          "first",
+          26
+        ],
+        [
+          "rain",
+          26
+        ],
+        [
+          "truth",
+          26
+        ],
+        [
+          "case",
+          25
+        ],
+        [
+          "man",
+          24
+        ],
+        [
+          "good",
+          24
+        ],
+        [
+          "round",
+          24
+        ],
+        [
+          "world",
+          23
+        ],
+        [
+          "better",
+          23
+        ],
+        [
+          "enough",
+          23
+        ]
+      ],
+      "album_keywords": {
+        "Pablo Honey": [
+          [
+            "better",
+            18
+          ],
+          [
+            "even",
+            16
+          ],
+          [
+            "though",
+            16
+          ],
+          [
+            "prove",
+            13
+          ],
+          [
+            "ripcord",
+            12
+          ],
+          [
+            "stop",
+            10
+          ],
+          [
+            "try",
+            9
+          ],
+          [
+            "run",
+            8
+          ],
+          [
+            "running",
+            8
+          ],
+          [
+            "whispering",
+            8
+          ],
+          [
+            "might",
+            8
+          ],
+          [
+            "never",
+            7
+          ],
+          [
+            "world",
+            7
+          ],
+          [
+            "want",
+            7
+          ],
+          [
+            "something",
+            7
+          ],
+          [
+            "time",
+            7
+          ],
+          [
+            "things",
+            6
+          ],
+          [
+            "everything",
+            6
+          ],
+          [
+            "special",
+            6
+          ],
+          [
+            "nothing",
+            6
+          ],
+          [
+            "dead",
+            6
+          ],
+          [
+            "wrapped",
+            6
+          ],
+          [
+            "belong",
+            5
+          ],
+          [
+            "care",
+            5
+          ],
+          [
+            "control",
+            5
+          ]
+        ],
+        "The Bends": [
+          [
+            "nice",
+            17
+          ],
+          [
+            "dream",
+            17
+          ],
+          [
+            "leave",
+            15
+          ],
+          [
+            "wish",
+            12
+          ],
+          [
+            "wears",
+            12
+          ],
+          [
+            "home",
+            10
+          ],
+          [
+            "everything",
+            9
+          ],
+          [
+            "high",
+            9
+          ],
+          [
+            "blame",
+            9
+          ],
+          [
+            "dry",
+            8
+          ],
+          [
+            "feel",
+            8
+          ],
+          [
+            "broken",
+            7
+          ],
+          [
+            "could",
+            7
+          ],
+          [
+            "think",
+            7
+          ],
+          [
+            "want",
+            7
+          ],
+          [
+            "bulletproof",
+            7
+          ],
+          [
+            "love",
+            6
+          ],
+          [
+            "bones",
+            6
+          ],
+          [
+            "comes",
+            6
+          ],
+          [
+            "day",
+            6
+          ],
+          [
+            "headshrinkers",
+            6
+          ],
+          [
+            "uncle",
+            6
+          ],
+          [
+            "bill",
+            6
+          ],
+          [
+            "belisha",
+            6
+          ],
+          [
+            "beacon",
+            6
+          ]
+        ],
+        "OK Computer": [
+          [
+            "uptight",
+            15
+          ],
+          [
+            "slow",
+            12
+          ],
+          [
+            "back",
+            9
+          ],
+          [
+            "rain",
+            9
+          ],
+          [
+            "lost",
+            9
+          ],
+          [
+            "alarms",
+            9
+          ],
+          [
+            "surprises",
+            9
+          ],
+          [
+            "height",
+            8
+          ],
+          [
+            "man",
+            7
+          ],
+          [
+            "choke",
+            7
+          ],
+          [
+            "great",
+            6
+          ],
+          [
+            "hanging",
+            6
+          ],
+          [
+            "around",
+            6
+          ],
+          [
+            "head",
+            5
+          ],
+          [
+            "keep",
+            5
+          ],
+          [
+            "interstellar",
+            4
+          ],
+          [
+            "burst",
+            4
+          ],
+          [
+            "save",
+            4
+          ],
+          [
+            "universe",
+            4
+          ],
+          [
+            "may",
+            4
+          ],
+          [
+            "paranoid",
+            4
+          ],
+          [
+            "android",
+            4
+          ],
+          [
+            "remember",
+            4
+          ],
+          [
+            "alright",
+            4
+          ],
+          [
+            "hope",
+            4
+          ]
+        ],
+        "Kid A": [
+          [
+            "first",
+            21
+          ],
+          [
+            "everything",
+            17
+          ],
+          [
+            "best",
+            17
+          ],
+          [
+            "walkin",
+            16
+          ],
+          [
+            "try",
+            12
+          ],
+          [
+            "message",
+            11
+          ],
+          [
+            "read",
+            11
+          ],
+          [
+            "childre",
+            11
+          ],
+          [
+            "round",
+            10
+          ],
+          [
+            "right",
+            8
+          ],
+          [
+            "place",
+            8
+          ],
+          [
+            "children",
+            8
+          ],
+          [
+            "holdin",
+            7
+          ],
+          [
+            "another",
+            7
+          ],
+          [
+            "head",
+            6
+          ],
+          [
+            "tried",
+            6
+          ],
+          [
+            "everyone",
+            6
+          ],
+          [
+            "enough",
+            6
+          ],
+          [
+            "world",
+            6
+          ],
+          [
+            "alive",
+            6
+          ],
+          [
+            "time",
+            6
+          ],
+          [
+            "release",
+            6
+          ],
+          [
+            "little",
+            5
+          ],
+          [
+            "happenin",
+            5
+          ],
+          [
+            "good",
+            5
+          ]
+        ],
+        "Amnesiac": [
+          [
+            "case",
+            23
+          ],
+          [
+            "nothing",
+            13
+          ],
+          [
+            "doors",
+            10
+          ],
+          [
+            "release",
+            10
+          ],
+          [
+            "reasonable",
+            9
+          ],
+          [
+            "man",
+            9
+          ],
+          [
+            "well",
+            9
+          ],
+          [
+            "quiet",
+            9
+          ],
+          [
+            "think",
+            8
+          ],
+          [
+            "around",
+            8
+          ],
+          [
+            "little",
+            6
+          ],
+          [
+            "back",
+            6
+          ],
+          [
+            "want",
+            6
+          ],
+          [
+            "maybe",
+            6
+          ],
+          [
+            "course",
+            6
+          ],
+          [
+            "used",
+            5
+          ],
+          [
+            "never",
+            5
+          ],
+          [
+            "ghost",
+            5
+          ],
+          [
+            "horses",
+            5
+          ],
+          [
+            "look",
+            5
+          ],
+          [
+            "land",
+            5
+          ],
+          [
+            "years",
+            4
+          ],
+          [
+            "waiting",
+            4
+          ],
+          [
+            "fear",
+            4
+          ],
+          [
+            "doubt",
+            4
+          ]
+        ],
+        "Hail to the Thief": [
+          [
+            "raindrops",
+            48
+          ],
+          [
+            "paying",
+            16
+          ],
+          [
+            "attention",
+            16
+          ],
+          [
+            "alive",
+            16
+          ],
+          [
+            "eat",
+            15
+          ],
+          [
+            "lies",
+            12
+          ],
+          [
+            "ringing",
+            12
+          ],
+          [
+            "eyes",
+            12
+          ],
+          [
+            "put",
+            9
+          ],
+          [
+            "sit",
+            8
+          ],
+          [
+            "someone",
+            8
+          ],
+          [
+            "feel",
+            8
+          ],
+          [
+            "reach",
+            8
+          ],
+          [
+            "stand",
+            7
+          ],
+          [
+            "nothing",
+            7
+          ],
+          [
+            "fell",
+            6
+          ],
+          [
+            "suck",
+            6
+          ],
+          [
+            "myxomatosis",
+            6
+          ],
+          [
+            "anytime",
+            5
+          ],
+          [
+            "could",
+            5
+          ],
+          [
+            "dead",
+            5
+          ],
+          [
+            "end",
+            5
+          ],
+          [
+            "want",
+            5
+          ],
+          [
+            "breathing",
+            5
+          ],
+          [
+            "little",
+            5
+          ]
+        ],
+        "In Rainbows": [
+          [
+            "videotape",
+            9
+          ],
+          [
+            "wrong",
+            8
+          ],
+          [
+            "alright",
+            8
+          ],
+          [
+            "denial",
+            8
+          ],
+          [
+            "end",
+            6
+          ],
+          [
+            "eyes",
+            6
+          ],
+          [
+            "round",
+            6
+          ],
+          [
+            "stuffed",
+            6
+          ],
+          [
+            "light",
+            5
+          ],
+          [
+            "seen",
+            5
+          ],
+          [
+            "feel",
+            5
+          ],
+          [
+            "bottom",
+            5
+          ],
+          [
+            "enough",
+            5
+          ],
+          [
+            "back",
+            5
+          ],
+          [
+            "away",
+            5
+          ],
+          [
+            "string",
+            4
+          ],
+          [
+            "gone",
+            4
+          ],
+          [
+            "follow",
+            4
+          ],
+          [
+            "face",
+            4
+          ],
+          [
+            "coming",
+            4
+          ],
+          [
+            "fall",
+            4
+          ],
+          [
+            "weird",
+            4
+          ],
+          [
+            "fishes",
+            4
+          ],
+          [
+            "hit",
+            4
+          ],
+          [
+            "escape",
+            4
+          ]
+        ],
+        "The King of Limbs": [
+          [
+            "hurt",
+            40
+          ],
+          [
+            "arms",
+            26
+          ],
+          [
+            "wake",
+            16
+          ],
+          [
+            "little",
+            8
+          ],
+          [
+            "free",
+            8
+          ],
+          [
+            "want",
+            7
+          ],
+          [
+            "heart",
+            6
+          ],
+          [
+            "set",
+            6
+          ],
+          [
+            "think",
+            6
+          ],
+          [
+            "give",
+            5
+          ],
+          [
+            "wrong",
+            5
+          ],
+          [
+            "fallen",
+            5
+          ],
+          [
+            "giant",
+            4
+          ],
+          [
+            "last",
+            4
+          ],
+          [
+            "hook",
+            4
+          ],
+          [
+            "crook",
+            4
+          ],
+          [
+            "never",
+            4
+          ],
+          [
+            "bed",
+            4
+          ],
+          [
+            "long",
+            4
+          ],
+          [
+            "vivid",
+            4
+          ],
+          [
+            "dream",
+            4
+          ],
+          [
+            "back",
+            3
+          ],
+          [
+            "around",
+            3
+          ],
+          [
+            "judge",
+            3
+          ],
+          [
+            "empty",
+            3
+          ]
+        ],
+        "A Moon Shaped Pool": [
+          [
+            "truth",
+            25
+          ],
+          [
+            "mess",
+            23
+          ],
+          [
+            "broken",
+            19
+          ],
+          [
+            "hearts",
+            18
+          ],
+          [
+            "rain",
+            17
+          ],
+          [
+            "efil",
+            16
+          ],
+          [
+            "flah",
+            16
+          ],
+          [
+            "really",
+            16
+          ],
+          [
+            "love",
+            14
+          ],
+          [
+            "messed",
+            14
+          ],
+          [
+            "want",
+            12
+          ],
+          [
+            "times",
+            10
+          ],
+          [
+            "back",
+            9
+          ],
+          [
+            "light",
+            9
+          ],
+          [
+            "good",
+            9
+          ],
+          [
+            "around",
+            7
+          ],
+          [
+            "sweet",
+            7
+          ],
+          [
+            "time",
+            7
+          ],
+          [
+            "lost",
+            7
+          ],
+          [
+            "never",
+            6
+          ],
+          [
+            "laugh",
+            6
+          ],
+          [
+            "mean",
+            6
+          ],
+          [
+            "keep",
+            6
+          ],
+          [
+            "leave",
+            6
+          ],
+          [
+            "blow",
+            6
+          ]
+        ]
       },
-      "interpretation": "SUPPORTS H2: Lexical metrics changed more than sentiment."
+      "keyword_overlap_matrix": {
+        "Pablo Honey": {
+          "Pablo Honey": 1.0,
+          "The Bends": 0.042,
+          "OK Computer": 0.0,
+          "Kid A": 0.087,
+          "Amnesiac": 0.064,
+          "Hail to the Thief": 0.064,
+          "In Rainbows": 0.0,
+          "The King of Limbs": 0.042,
+          "A Moon Shaped Pool": 0.064
+        },
+        "The Bends": {
+          "Pablo Honey": 0.042,
+          "The Bends": 1.0,
+          "OK Computer": 0.0,
+          "Kid A": 0.02,
+          "Amnesiac": 0.042,
+          "Hail to the Thief": 0.064,
+          "In Rainbows": 0.02,
+          "The King of Limbs": 0.064,
+          "A Moon Shaped Pool": 0.087
+        },
+        "OK Computer": {
+          "Pablo Honey": 0.0,
+          "The Bends": 0.0,
+          "OK Computer": 1.0,
+          "Kid A": 0.02,
+          "Amnesiac": 0.064,
+          "Hail to the Thief": 0.0,
+          "In Rainbows": 0.042,
+          "The King of Limbs": 0.042,
+          "A Moon Shaped Pool": 0.111
+        },
+        "Kid A": {
+          "Pablo Honey": 0.087,
+          "The Bends": 0.02,
+          "OK Computer": 0.02,
+          "Kid A": 1.0,
+          "Amnesiac": 0.042,
+          "Hail to the Thief": 0.042,
+          "In Rainbows": 0.042,
+          "The King of Limbs": 0.02,
+          "A Moon Shaped Pool": 0.042
+        },
+        "Amnesiac": {
+          "Pablo Honey": 0.064,
+          "The Bends": 0.042,
+          "OK Computer": 0.064,
+          "Kid A": 0.042,
+          "Amnesiac": 1.0,
+          "Hail to the Thief": 0.064,
+          "In Rainbows": 0.02,
+          "The King of Limbs": 0.136,
+          "A Moon Shaped Pool": 0.087
+        },
+        "Hail to the Thief": {
+          "Pablo Honey": 0.064,
+          "The Bends": 0.064,
+          "OK Computer": 0.0,
+          "Kid A": 0.042,
+          "Amnesiac": 0.064,
+          "Hail to the Thief": 1.0,
+          "In Rainbows": 0.064,
+          "The King of Limbs": 0.042,
+          "A Moon Shaped Pool": 0.02
+        },
+        "In Rainbows": {
+          "Pablo Honey": 0.0,
+          "The Bends": 0.02,
+          "OK Computer": 0.042,
+          "Kid A": 0.042,
+          "Amnesiac": 0.02,
+          "Hail to the Thief": 0.064,
+          "In Rainbows": 1.0,
+          "The King of Limbs": 0.042,
+          "A Moon Shaped Pool": 0.042
+        },
+        "The King of Limbs": {
+          "Pablo Honey": 0.042,
+          "The Bends": 0.064,
+          "OK Computer": 0.042,
+          "Kid A": 0.02,
+          "Amnesiac": 0.136,
+          "Hail to the Thief": 0.042,
+          "In Rainbows": 0.042,
+          "The King of Limbs": 1.0,
+          "A Moon Shaped Pool": 0.087
+        },
+        "A Moon Shaped Pool": {
+          "Pablo Honey": 0.064,
+          "The Bends": 0.087,
+          "OK Computer": 0.111,
+          "Kid A": 0.042,
+          "Amnesiac": 0.087,
+          "Hail to the Thief": 0.02,
+          "In Rainbows": 0.042,
+          "The King of Limbs": 0.087,
+          "A Moon Shaped Pool": 1.0
+        }
+      },
+      "avg_keyword_overlap": 0.048,
+      "adjacent_keyword_overlap_avg": 0.045,
+      "consistent_themes": [],
+      "recurring_terms": [
+        {
+          "term": "want",
+          "album_count": 6
+        },
+        {
+          "term": "back",
+          "album_count": 5
+        },
+        {
+          "term": "around",
+          "album_count": 4
+        },
+        {
+          "term": "little",
+          "album_count": 4
+        },
+        {
+          "term": "never",
+          "album_count": 4
+        }
+      ],
+      "recurring_terms_threshold": 4,
+      "topic_modeling": null,
+      "topic_modeling_error": "sklearn not available",
+      "interpretation": "No single term appears in every album's top keywords, but 5 terms recur in at least 4 albums (e.g., want, back, around, little, never). Average keyword overlap across albums is 0.048."
     },
     "h4_in_rainbows_test": {
       "hypothesis": "H4: In Rainbows is the outlier, not Kid A",
       "description": "Testing whether In Rainbows represents a larger shift from adjacent albums compared to Kid A.",
       "in_rainbows_tests": {
         "vs_hail_to_thief": {
-          "u_statistic": 70.0,
-          "p_value": 1.0,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.0,
-          "group2_median": 0.0,
-          "group1_mean": 0.0,
-          "group2_mean": 0.0,
-          "group1_n": 14,
-          "group2_n": 10
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         },
         "vs_king_of_limbs": {
-          "u_statistic": 40.0,
-          "p_value": 1.0,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.0,
-          "group2_median": 0.0,
-          "group1_mean": 0.0,
-          "group2_mean": 0.0,
-          "group1_n": 10,
-          "group2_n": 8
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         }
       },
       "kid_a_tests": {
         "vs_ok_computer": {
-          "u_statistic": 54.0,
-          "p_value": 1.0,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.0,
-          "group2_median": 0.0,
-          "group1_mean": 0.0,
-          "group2_mean": 0.0,
-          "group1_n": 12,
-          "group2_n": 9
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         },
         "vs_amnesiac": {
-          "u_statistic": 45.0,
-          "p_value": 1.0,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.0,
-          "group2_median": 0.0,
-          "group1_mean": 0.0,
-          "group2_mean": 0.0,
-          "group1_n": 9,
-          "group2_n": 10
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         }
       },
       "warmth_by_album": {
@@ -6583,28 +7711,14 @@
       "context": "Released May 2016. Rachel Owen, Thom Yorke's partner of 23 years, passed away in December 2016. The album contains True Love Waits (21 years in waiting) and Glass Eyes, both achingly personal.",
       "comparison_to_discography": {
         "sadness": {
-          "u_statistic": 453.5,
-          "p_value": 0.205506,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.0,
-          "group2_median": 0.0073,
-          "group1_mean": 0.0089,
-          "group2_mean": 0.0185,
-          "group1_n": 87,
-          "group2_n": 13
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         },
         "sentiment": {
-          "u_statistic": 565.5,
-          "p_value": 1.0,
-          "significant_05": "False",
-          "significant_01": "False",
-          "group1_median": 0.0,
-          "group2_median": 0.0,
-          "group1_mean": 0.0,
-          "group2_mean": 0.0,
-          "group1_n": 87,
-          "group2_n": 13
+          "error": "scipy not available",
+          "u_statistic": null,
+          "p_value": null
         }
       },
       "track_analysis": [

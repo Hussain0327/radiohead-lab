@@ -51,10 +51,10 @@ This project quantifies what "cold" and "detached" actually mean, then tests whe
 Kid A's reputation as emotionally distant may be driven more by its production than its lyrics. Sentiment analysis and emotion classification will test whether the lyrical content actually shifted, or whether critics projected the sonic palette onto the words.
 
 **H2: Vocabulary fragmentation increased, not negativity.**
-Thom Yorke's later lyrics feel different because they're structurally fragmented, not because they're sadder. Metrics like lexical diversity, sentence completeness, and coherence scores may explain the "abstract" feeling better than sentiment alone.
+Thom Yorke's later lyrics feel different because they're structurally fragmented, not because they're sadder. Metrics like lexical diversity (type-token ratio), average sentence length, and repetition ratios may explain the "abstract" feeling better than sentiment alone.
 
 **H3: Thematic clustering reveals more continuity than change.**
-Topic modeling across albums will test whether Radiohead's core concerns (technology, isolation, identity, decay) remain stable even as delivery changes. The hypothesis is that the band's thematic DNA is more consistent than the "reinvention" narrative suggests.
+Topic modeling and keyword overlap across albums will test whether Radiohead's core concerns (technology, isolation, identity, decay) remain stable even as delivery changes. The hypothesis is that the band's thematic DNA is more consistent than the "reinvention" narrative suggests.
 
 **H4: In Rainbows is the outlier, not Kid A.**
 Conventional wisdom treats Kid A as the pivot point. But In Rainbows may represent a larger emotional shift—a return to directness that breaks from the Kid A through Hail to the Thief period. The data will show which album is the true statistical outlier.
@@ -79,11 +79,15 @@ True Love Waits existed for 21 years as a live-only track before appearing on A 
 
 ### Vocabulary Evolution (H2)
 
-Type-token ratio (lexical diversity) shows vocabulary becoming more varied in later albums, supporting H2: the lyrics "feel different" because of structural fragmentation, not increased negativity.
+Type-token ratio (lexical diversity) increases in later albums and average sentence length is slightly shorter, while sentiment remains flat. This supports H2: the lyrics "feel different" because of structural fragmentation, not increased negativity.
 
 <p align="center">
   <img src="results/figures/type_token_ratio.png" width="700" alt="Type Token Ratio"/>
 </p>
+
+### Thematic Continuity (H3)
+
+Keyword overlap across album-level top terms is modest (avg ~0.05; adjacent albums ~0.05). A small set of terms recur in at least 4 albums (e.g., want, back, never, around, little). LDA topic modeling runs when scikit-learn is available, and is exported alongside the overlap results.
 
 ### Emotional Trajectory
 
@@ -95,7 +99,7 @@ Sentiment over time across the discography, with each album represented by its D
 
 ### 2025 Tour: Setlist Archaeology
 
-The reunion tour drew heavily from the Late era (37%) and Reinvention era (24%), with True Love Waits appearing in every single show.
+Based on 12 recorded setlists from a 20-date tour, the reunion shows drew heavily from the Late era (37%) and Reinvention era (24%), with True Love Waits appearing in every recorded show.
 
 <p align="center">
   <img src="results/figures/era_distribution.png" width="500" alt="Era Distribution"/>
@@ -113,7 +117,8 @@ radiohead-lab/
 │   │   └── tour_2025_setlists.json  # 2025 reunion tour setlists
 │   ├── processed/                   # Cleaned datasets
 │   └── exports/
-│       └── radiohead_complete.json  # Final dataset for web
+│       ├── radiohead_complete.json  # Enriched track-level dataset
+│       └── radiohead_with_audio.json # Placeholder for Spotify features
 ├── src/
 │   ├── scrapers/
 │   │   ├── lyrics_scraper.py        # Genius API
@@ -141,6 +146,7 @@ radiohead-lab/
 │   │   │   ├── TrueLoveWaits.jsx    # 21-year wait story
 │   │   │   └── ReunionTour2025.jsx  # Tour setlist archaeology
 │   │   ├── data/
+│   │   │   ├── radiohead_complete.json
 │   │   │   └── radiohead_web_data.json
 │   │   ├── styles/
 │   │   │   └── donwood.css          # Donwood-inspired theming
@@ -196,7 +202,8 @@ python -m src.analysis.setlist_archaeology
 ## Known Limitations
 
 - Spotify audio features unavailable (API returns 403 with client credentials)
-- Setlist data manually compiled from public fan archives
+- Setlist data manually compiled from public fan archives (12 recorded shows)
+- Topic modeling uses LDA when scikit-learn is available; otherwise keyword overlap is used
 
 ## Data Sources
 

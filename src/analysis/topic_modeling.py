@@ -179,8 +179,8 @@ def test_h3_thematic_continuity(data: List[Dict[str, Any]]) -> Dict[str, Any]:
     # Get overall keywords
     overall_keywords = extract_keywords(data, top_n=30)
 
-    # Get keywords by album
-    album_keywords = extract_keywords_by_album(data, top_n=15)
+    # Get keywords by album (wider net helps surface shared terms)
+    album_keywords = extract_keywords_by_album(data, top_n=25)
 
     # Run topic modeling
     lda_results = run_lda(data, n_topics=5)
@@ -189,6 +189,7 @@ def test_h3_thematic_continuity(data: List[Dict[str, Any]]) -> Dict[str, Any]:
     # (percentage of shared top keywords)
     albums = list(album_keywords.keys())
     overlap_matrix = {}
+    overlap_values = []
 
     for a1 in albums:
         words1 = set(w for w, _ in album_keywords[a1])
@@ -197,11 +198,76 @@ def test_h3_thematic_continuity(data: List[Dict[str, Any]]) -> Dict[str, Any]:
             words2 = set(w for w, _ in album_keywords[a2])
             overlap = len(words1.intersection(words2)) / len(words1.union(words2))
             overlap_matrix[a1][a2] = round(overlap, 3)
+            if a1 != a2:
+                overlap_values.append(overlap)
+
+    avg_keyword_overlap = round(sum(overlap_values) / len(overlap_values), 3) if overlap_values else 0.0
+
+    # Adjacent-album overlap for continuity check
+    order = [
+        "Pablo Honey", "The Bends", "OK Computer", "Kid A", "Amnesiac",
+        "Hail to the Thief", "In Rainbows", "The King of Limbs", "A Moon Shaped Pool"
+    ]
+    adjacent_overlaps = []
+    for a1, a2 in zip(order, order[1:]):
+        if a1 in album_keywords and a2 in album_keywords:
+            words1 = set(w for w, _ in album_keywords[a1])
+            words2 = set(w for w, _ in album_keywords[a2])
+            overlap = len(words1.intersection(words2)) / len(words1.union(words2))
+            adjacent_overlaps.append(overlap)
+
+    adjacent_overlap_avg = (
+        round(sum(adjacent_overlaps) / len(adjacent_overlaps), 3)
+        if adjacent_overlaps
+        else 0.0
+    )
 
     # Find consistent themes across all albums
     consistent_words = set(w for w, _ in album_keywords[albums[0]])
     for album in albums[1:]:
         consistent_words &= set(w for w, _ in album_keywords[album])
+
+    # Find recurring terms across a majority of albums
+    term_counts = defaultdict(int)
+    for album, keywords in album_keywords.items():
+        for term, _ in keywords:
+            term_counts[term] += 1
+
+    threshold = max(3, len(albums) // 2)
+    recurring_terms = sorted(
+        [
+            {"term": term, "album_count": count}
+            for term, count in term_counts.items()
+            if count >= threshold
+        ],
+        key=lambda x: (-x["album_count"], x["term"])
+    )
+
+    if consistent_words:
+        interpretation = (
+            f"Found {len(consistent_words)} terms appearing in top keywords of every album, "
+            "suggesting thematic continuity across eras."
+        )
+    elif recurring_terms:
+        sample_terms = ", ".join(t["term"] for t in recurring_terms[:5])
+        interpretation = (
+            "No single term appears in every album's top keywords, but "
+            f"{len(recurring_terms)} terms recur in at least {threshold} albums "
+            f"(e.g., {sample_terms}). Average keyword overlap across albums "
+            f"is {avg_keyword_overlap}."
+        )
+    else:
+        interpretation = (
+            "Keyword overlap across albums is low; thematic continuity is subtle in the "
+            "top-keyword signal and may require topic modeling for clearer structure."
+        )
+
+    topic_modeling = None
+    topic_modeling_error = None
+    if isinstance(lda_results, dict) and "error" in lda_results:
+        topic_modeling_error = lda_results["error"]
+    else:
+        topic_modeling = lda_results
 
     return {
         "hypothesis": "H3: Thematic clustering reveals more continuity than change",
@@ -212,12 +278,14 @@ def test_h3_thematic_continuity(data: List[Dict[str, Any]]) -> Dict[str, Any]:
         "overall_keywords": overall_keywords,
         "album_keywords": album_keywords,
         "keyword_overlap_matrix": overlap_matrix,
+        "avg_keyword_overlap": avg_keyword_overlap,
+        "adjacent_keyword_overlap_avg": adjacent_overlap_avg,
         "consistent_themes": list(consistent_words),
-        "topic_modeling": lda_results if isinstance(lda_results, dict) and "error" not in lda_results else None,
-        "interpretation": (
-            f"Found {len(consistent_words)} words appearing in top keywords of every album, "
-            f"suggesting core thematic DNA persists across eras."
-        )
+        "recurring_terms": recurring_terms,
+        "recurring_terms_threshold": threshold,
+        "topic_modeling": topic_modeling,
+        "topic_modeling_error": topic_modeling_error,
+        "interpretation": interpretation
     }
 
 
